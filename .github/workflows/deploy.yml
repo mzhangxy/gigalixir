@@ -3,7 +3,7 @@ name: Deploy to Gigalixir
 on:
   push:
     branches:
-      - main  # 如果你的默认主分支叫 master，请修改此处
+      - main
 
 jobs:
   deploy:
@@ -12,11 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 必须拉取完整的 Git 历史，否则 Gigalixir 无法识别变更
+          fetch-depth: 0 
 
       - name: Deploy Application
-        uses: gigalixir/gigalixir-action@v1
+        uses: gigalixir/gigalixir-action@main
         with:
           gigalixir_email: ${{ secrets.GIGALIXIR_EMAIL }}
           gigalixir_api_key: ${{ secrets.GIGALIXIR_API_KEY }}
-          gigalixir_app: ${{ secrets.GIGALIXIR_APP_NAME }}
+          app_name: ${{ secrets.GIGALIXIR_APP_NAME }}
